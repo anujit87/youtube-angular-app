@@ -7,7 +7,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 })
 export class YoutubeService {
 
-  authKey='AIzaSyBgPp9Ad-WIRL1xSKQGry3QLqPGpP7xg1g';
+  authKey='';
 
   constructor(private _http:HttpClient) { }
 
