@@ -1,0 +1,23 @@
+<div class="container-fluid pt-4">
+  <h5 class="mb-3">Trending</h5>
+  <div class="row">
+    <div class="col-sm-2" *ngFor="let item of trendingList">
+      <a [routerLink]="['/video',item.id]" style="text-decoration:none">
+      <div class="card mb-0 bg-light" style="border:none">
+        <img src="{{item.snippet.thumbnails.maxres.url}}" alt="" class="card-img-top" *ngIf="item.snippet.thumbnails.maxres">
+        <img src="{{item.snippet.thumbnails.medium.url}}" alt="" class="card-img-top" *ngIf="!item.snippet.thumbnails.maxres">
+        <div class="card-img-overlay text-right mt-5 pr-2 pb-0 mb-0 pt-4" style="display:block">
+          <span class="bg-dark text-white" >{{durationFormat(item.contentDetails.duration)}}</span>
+        </div>
+        <div class="card-body pl-0 pt-1 pb-0">
+          <h6 class="card-title text-truncate mb-1 text-dark" style="display: -webkit-box;
+          -webkit-box-orient: vertical;-webkit-line-clamp: 2;white-space:normal" >{{item.snippet.title}}</h6>
+          <p class="text-muted small mb-0">{{item.snippet.channelTitle}}</p>
+          <p class="text-muted small">{{formatViewCount(item.statistics.viewCount)}} views&nbsp;|&nbsp;{{formatDate(item.snippet.publishedAt)}}</p>
+        </div>
+      </div>
+    </a>
+    </div>
+  </div>
+  <hr>
+</div>

@@ -1,0 +1,22 @@
+<div class="container pt-4">
+  <div class="col-sm-9">
+<div class="card bg-light mb-2" style="border:none"  *ngFor="let video of videoList">
+    <a [routerLink]="['/video',video.id.videoId]" style="text-decoration:none" class="text-dark">
+<div class="row no-gutters">
+  <div class="col-auto">
+      <img src="{{video.snippet.thumbnails.medium.url}}" alt="" class="img-fluid" width="246" height="138">
+    </div>
+    <div class="col">
+      <div class="card-body pt-0 pl-2">
+      <h5 class="card-title text-truncate mb-1 pt-1" style="display: -webkit-box;
+      -webkit-box-orient: vertical;-webkit-line-clamp: 2;white-space:normal" [innerHtml]="video.snippet.title"></h5>
+      <p class="text-muted small mb-2">{{video.snippet.channelTitle}}</p>  
+      <p class="text-muted small">{{video.snippet.description}}</p>
+      
+  </div>  
+  </div>
+</div>
+</a>
+</div>
+</div>
+</div>

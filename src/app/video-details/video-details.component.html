@@ -1,0 +1,64 @@
+<!--<div class="container-fluid pt-4" [innerHtml]="html | noSanitize" *ngIf="html"></div>-->
+<div class="container-fluid pt-4" *ngIf="video">
+  <div class="row">
+    <div class="col-sm-8">
+    <div class="embed-responsive embed-responsive-16by9">
+      <iframe class="embed-responsive-item" [src]="source | noSanitize" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <h5 class="mt-3">{{video.snippet.title}}</h5>
+    <span class="text-muted">{{video.statistics.viewCount | number}} views</span>
+    <span class="text-muted float-right">
+      <i class="fas fa-thumbs-up"></i> {{formatCount(video.statistics.likeCount)}}&nbsp;&nbsp;
+      <i class="fas fa-thumbs-down"></i> {{formatCount(video.statistics.dislikeCount)}}
+    </span>
+    <hr>
+    <div class="card bg-light" style="border:none">
+    <div class="row no-gutters" *ngIf="channelDetails">
+      <div class="col-auto">
+      <img src="{{channelDetails.snippet.thumbnails.default.url}}" height="70" width="70" alt="" class="rounded-circle">
+        
+    </div>
+    <div class="col">
+      <div class="card-body pt-2">
+    <p class="card-title mb-0" style="font-weight:500">{{channelDetails.snippet.title}}  </p>
+    <p class="text-muted card-text small">Published on {{video.snippet.publishedAt | date}}</p>
+    <div *ngIf="!displayFull">
+    <p class="text-truncate" style="display: -webkit-box;
+    -webkit-box-orient: vertical;-webkit-line-clamp: 2;white-space:normal">{{video.snippet.description}}</p>
+    <a (click)="displaycontent()" class="text-muted" style="text-decoration:none">SHOW MORE</a>
+  </div>
+  <div *ngIf="displayFull">
+      <p >{{video.snippet.description}}</p>
+      <a (click)="displaycontent()" class="text-muted" style="text-decoration:none">SHOW LESS</a>
+    </div>
+  </div>
+  </div>
+    </div>
+  </div>
+  </div>
+    <div class="col-sm-4">
+      <h6>Related Videos</h6>
+      
+        <div class="card bg-light mb-2" style="border:none"  *ngFor="let relatedItem of relatedVideos">
+            <a [routerLink]="['/video',relatedItem.id.videoId]" style="text-decoration:none" class="text-dark">
+      <div class="row no-gutters">
+          <div class="col-auto">
+              <img src="{{relatedItem.snippet.thumbnails.medium.url}}" width="168" height="94" class="img-fluid" alt="">
+            </div>
+            <div class="col">
+              <div class="card-body pt-0 pl-2">
+              <h6 class="card-title text-truncate mb-1" style="display: -webkit-box;
+              -webkit-box-orient: vertical;-webkit-line-clamp: 2;white-space:normal">{{relatedItem.snippet.title}}</h6>
+              <p class="text-muted card-text small">{{relatedItem.snippet.channelTitle}}</p> 
+              
+              
+          </div>  
+          </div>
+      </div>
+    </a>
+      </div>
+    
+    </div>
+  </div>
+</div>
